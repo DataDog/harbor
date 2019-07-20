@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "cache.go",
+        "dataloader.go",
+        "inMemoryCache.go",
+        "inMemoryCache_go19.go",
+        "key.go",
+        "trace.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/graph-gophers/dataloader",
+    importpath = "github.com/graph-gophers/dataloader",
+    visibility = ["//visibility:public"],
+    deps = ["//src/vendor/github.com/opentracing/opentracing-go:go_default_library"],
+)

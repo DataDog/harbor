@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "default_effector.go",
+        "effector.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/casbin/casbin/effect",
+    importpath = "github.com/casbin/casbin/effect",
+    visibility = ["//visibility:public"],
+    deps = ["//src/vendor/github.com/pkg/errors:go_default_library"],
+)

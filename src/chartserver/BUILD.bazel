@@ -1,0 +1,63 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "cache.go",
+        "chart_operator.go",
+        "client.go",
+        "controller.go",
+        "handler_interface.go",
+        "handler_manipulation.go",
+        "handler_proxy_traffic.go",
+        "handler_repo.go",
+        "handler_utility.go",
+        "reverse_proxy.go",
+        "utils.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/chartserver",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/http:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/replication:go_default_library",
+        "//src/replication/event:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/vendor/github.com/Masterminds/semver:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/cache:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/cache/redis:go_default_library",
+        "//src/vendor/github.com/ghodss/yaml:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+        "//src/vendor/k8s.io/helm/cmd/helm/search:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/chartutil:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/proto/hapi/chart:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/repo:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "base_test.go",
+        "cache_test.go",
+        "chart_operator_test.go",
+        "controller_test.go",
+        "handler_manipulation_test.go",
+        "handler_proxy_traffic_test.go",
+        "handler_repo_test.go",
+        "handler_utility_test.go",
+        "reverse_proxy_test.go",
+        "utils_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/testing:go_default_library",
+        "//src/vendor/github.com/ghodss/yaml:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/chartutil:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/proto/hapi/chart:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/repo:go_default_library",
+    ],
+)

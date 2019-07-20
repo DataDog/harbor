@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["compiler.go"],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/gobwas/glob/compiler",
+    importpath = "github.com/gobwas/glob/compiler",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/gobwas/glob/match:go_default_library",
+        "//src/vendor/github.com/gobwas/glob/syntax/ast:go_default_library",
+        "//src/vendor/github.com/gobwas/glob/util/runes:go_default_library",
+    ],
+)

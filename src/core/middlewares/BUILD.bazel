@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "chain.go",
+        "config.go",
+        "inlet.go",
+        "interface.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/middlewares",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/core/filter:go_default_library",
+        "//src/core/middlewares/contenttrust:go_default_library",
+        "//src/core/middlewares/countquota:go_default_library",
+        "//src/core/middlewares/listrepo:go_default_library",
+        "//src/core/middlewares/multiplmanifest:go_default_library",
+        "//src/core/middlewares/readonly:go_default_library",
+        "//src/core/middlewares/registryproxy:go_default_library",
+        "//src/core/middlewares/sizequota:go_default_library",
+        "//src/core/middlewares/url:go_default_library",
+        "//src/core/middlewares/util:go_default_library",
+        "//src/core/middlewares/vulnerable:go_default_library",
+        "//src/vendor/github.com/justinas/alice:go_default_library",
+    ],
+)

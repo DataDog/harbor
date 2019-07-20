@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["processor.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/retention/policy/alg",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/pkg/retention/policy/action:go_default_library",
+        "//src/pkg/retention/policy/rule:go_default_library",
+        "//src/pkg/retention/res:go_default_library",
+    ],
+)

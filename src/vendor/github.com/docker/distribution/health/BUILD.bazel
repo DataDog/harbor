@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "doc.go",
+        "health.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/docker/distribution/health",
+    importpath = "github.com/docker/distribution/health",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/docker/distribution/context:go_default_library",
+        "//src/vendor/github.com/docker/distribution/registry/api/errcode:go_default_library",
+    ],
+)

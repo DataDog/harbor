@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "cache.go",
+        "conv.go",
+        "file.go",
+        "memory.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/astaxie/beego/cache",
+    importpath = "github.com/astaxie/beego/cache",
+    visibility = ["//visibility:public"],
+)

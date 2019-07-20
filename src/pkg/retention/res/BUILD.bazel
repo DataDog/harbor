@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "candidate.go",
+        "result.go",
+        "selector.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/pkg/retention/res",
+    visibility = ["//visibility:public"],
+    deps = ["//src/vendor/github.com/pkg/errors:go_default_library"],
+)

@@ -1,0 +1,43 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "replication.go",
+        "scheduler.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/jobservice/job/impl/replication",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/http:go_default_library",
+        "//src/common/http/modifier/auth:go_default_library",
+        "//src/common/utils/registry:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/replication/adapter/aliacr:go_default_library",
+        "//src/replication/adapter/awsecr:go_default_library",
+        "//src/replication/adapter/azurecr:go_default_library",
+        "//src/replication/adapter/dockerhub:go_default_library",
+        "//src/replication/adapter/googlegcr:go_default_library",
+        "//src/replication/adapter/harbor:go_default_library",
+        "//src/replication/adapter/helmhub:go_default_library",
+        "//src/replication/adapter/huawei:go_default_library",
+        "//src/replication/adapter/native:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/replication/transfer:go_default_library",
+        "//src/replication/transfer/chart:go_default_library",
+        "//src/replication/transfer/image:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["replication_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/jobservice/job/impl:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/replication/transfer:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["driver.go"],
+    importpath = "github.com/goharbor/harbor/src/common/quota/driver/mocks",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/quota/driver:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/mock:go_default_library",
+    ],
+)

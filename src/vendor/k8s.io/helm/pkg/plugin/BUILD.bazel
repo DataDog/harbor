@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "hooks.go",
+        "plugin.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/k8s.io/helm/pkg/plugin",
+    importpath = "k8s.io/helm/pkg/plugin",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/ghodss/yaml:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/helm/environment:go_default_library",
+    ],
+)

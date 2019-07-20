@@ -1,11 +1,9 @@
 !/contrib/helm/harbor
 
-make/docker-compose.yml
-make/common/config/*
-make/dev/adminserver/harbor_adminserver
-make/dev/core/harbor_core
-make/dev/jobservice/harbor_jobservice
-make/photon/*/binary/
+make/*
+!make/migrations/
+
+bazel-*
 
 src/adminserver/adminserver
 src/core/core

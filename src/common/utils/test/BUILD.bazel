@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "config.go",
+        "database.go",
+        "key.go",
+        "registryctl.go",
+        "test.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/common/utils/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/vendor/github.com/gorilla/mux:go_default_library",
+    ],
+)

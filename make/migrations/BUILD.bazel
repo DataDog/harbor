@@ -1,0 +1,7 @@
+filegroup(
+    name = "postgresql",
+    srcs = glob([
+        "postgresql/**",
+    ]),
+    visibility = ["//visibility:public"],
+)

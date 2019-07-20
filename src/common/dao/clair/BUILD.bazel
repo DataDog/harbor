@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["base.go"],
+    importpath = "github.com/goharbor/harbor/src/common/dao/clair",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/orm:go_default_library",
+    ],
+)

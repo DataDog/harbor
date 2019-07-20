@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "capabilities.go",
+        "chartfile.go",
+        "create.go",
+        "doc.go",
+        "expand.go",
+        "files.go",
+        "load.go",
+        "requirements.go",
+        "save.go",
+        "transform.go",
+        "values.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/k8s.io/helm/pkg/chartutil",
+    importpath = "k8s.io/helm/pkg/chartutil",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/BurntSushi/toml:go_default_library",
+        "//src/vendor/github.com/ghodss/yaml:go_default_library",
+        "//src/vendor/github.com/gobwas/glob:go_default_library",
+        "//src/vendor/k8s.io/apimachinery/pkg/version:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/ignore:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/proto/hapi/chart:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/proto/hapi/version:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/sympath:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/version:go_default_library",
+        "@io_bazel_rules_go//proto/wkt:any_go_proto",
+        "@io_bazel_rules_go//proto/wkt:timestamp_go_proto",
+    ],
+)

@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "doc.go",
+        "sign.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/k8s.io/helm/pkg/provenance",
+    importpath = "k8s.io/helm/pkg/provenance",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/ghodss/yaml:go_default_library",
+        "//src/vendor/golang.org/x/crypto/openpgp:go_default_library",
+        "//src/vendor/golang.org/x/crypto/openpgp/clearsign:go_default_library",
+        "//src/vendor/golang.org/x/crypto/openpgp/packet:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/chartutil:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/proto/hapi/chart:go_default_library",
+    ],
+)

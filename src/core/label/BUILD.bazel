@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "errors.go",
+        "manager.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/label",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["errors_test.go"],
+    embed = [":go_default_library"],
+)

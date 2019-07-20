@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "doc.go",
+        "getter.go",
+        "httpgetter.go",
+        "plugingetter.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/k8s.io/helm/pkg/getter",
+    importpath = "k8s.io/helm/pkg/getter",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/k8s.io/helm/pkg/helm/environment:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/plugin:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/tlsutil:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/urlutil:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/version:go_default_library",
+    ],
+)

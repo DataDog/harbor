@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "chartrepo.go",
+        "doc.go",
+        "index.go",
+        "local.go",
+        "repo.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/k8s.io/helm/pkg/repo",
+    importpath = "k8s.io/helm/pkg/repo",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/Masterminds/semver:go_default_library",
+        "//src/vendor/github.com/ghodss/yaml:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/chartutil:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/getter:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/proto/hapi/chart:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/provenance:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/urlutil:go_default_library",
+    ],
+)

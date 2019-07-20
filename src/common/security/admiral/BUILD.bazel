@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["context.go"],
+    importpath = "github.com/goharbor/harbor/src/common/security/admiral",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/models:go_default_library",
+        "//src/common/rbac:go_default_library",
+        "//src/common/rbac/project:go_default_library",
+        "//src/common/security/admiral/authcontext:go_default_library",
+        "//src/core/promgr:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["context_test.go"],
+    embed = [":go_default_library"],
+)

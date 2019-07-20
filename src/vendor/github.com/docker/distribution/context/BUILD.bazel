@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "context.go",
+        "doc.go",
+        "http.go",
+        "logger.go",
+        "trace.go",
+        "util.go",
+        "version.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/docker/distribution/context",
+    importpath = "github.com/docker/distribution/context",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/docker/distribution/uuid:go_default_library",
+        "//src/vendor/github.com/gorilla/mux:go_default_library",
+        "//src/vendor/github.com/sirupsen/logrus:go_default_library",
+    ],
+)

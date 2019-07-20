@@ -1,0 +1,37 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["processor.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/retention/policy/alg/or",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/pkg/retention/policy/action:go_default_library",
+        "//src/pkg/retention/policy/alg:go_default_library",
+        "//src/pkg/retention/policy/rule:go_default_library",
+        "//src/pkg/retention/res:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["processor_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/pkg/retention/dep:go_default_library",
+        "//src/pkg/retention/policy/action:go_default_library",
+        "//src/pkg/retention/policy/alg:go_default_library",
+        "//src/pkg/retention/policy/rule:go_default_library",
+        "//src/pkg/retention/policy/rule/always:go_default_library",
+        "//src/pkg/retention/policy/rule/lastx:go_default_library",
+        "//src/pkg/retention/policy/rule/latestps:go_default_library",
+        "//src/pkg/retention/res:go_default_library",
+        "//src/pkg/retention/res/selectors/doublestar:go_default_library",
+        "//src/pkg/retention/res/selectors/label:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "authutils.go",
+        "creator.go",
+        "token.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/service/token",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/models:go_default_library",
+        "//src/common/rbac:go_default_library",
+        "//src/common/security:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/filter:go_default_library",
+        "//src/core/promgr:go_default_library",
+        "//src/vendor/github.com/astaxie/beego:go_default_library",
+        "//src/vendor/github.com/docker/distribution/registry/auth/token:go_default_library",
+        "//src/vendor/github.com/docker/libtrust:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["token_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/models:go_default_library",
+        "//src/common/rbac:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/vendor/github.com/dgrijalva/jwt-go:go_default_library",
+        "//src/vendor/github.com/docker/distribution/registry/auth/token:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

@@ -1,0 +1,40 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "context.go",
+        "interface.go",
+        "kinds.go",
+        "known_jobs.go",
+        "models.go",
+        "op_cmd.go",
+        "status.go",
+        "tracker.go",
+        "web_hook.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/jobservice/job",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/jobservice/common/rds:go_default_library",
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/jobservice/errs:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+        "//src/vendor/github.com/gomodule/redigo/redis:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["tracker_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/jobservice/tests:go_default_library",
+        "//src/vendor/github.com/gomodule/redigo/redis:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

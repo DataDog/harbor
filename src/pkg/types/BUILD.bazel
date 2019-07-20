@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["resources.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/types",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["resources_test.go"],
+    embed = [":go_default_library"],
+    deps = ["//src/vendor/github.com/stretchr/testify/suite:go_default_library"],
+)

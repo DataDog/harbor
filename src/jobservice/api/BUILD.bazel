@@ -1,0 +1,40 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "authenticator.go",
+        "handler.go",
+        "router.go",
+        "server.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/jobservice/api",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/jobservice/common/query:go_default_library",
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/jobservice/config:go_default_library",
+        "//src/jobservice/core:go_default_library",
+        "//src/jobservice/errs:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+        "//src/vendor/github.com/gorilla/mux:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["handler_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/jobservice/common/query:go_default_library",
+        "//src/jobservice/errs:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/jobservice/worker:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/mock:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

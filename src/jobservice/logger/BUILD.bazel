@@ -1,0 +1,48 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "base.go",
+        "closer.go",
+        "entry.go",
+        "factory.go",
+        "getter_factory.go",
+        "interface.go",
+        "known_loggers.go",
+        "log_data_handler.go",
+        "options.go",
+        "service.go",
+        "sweeper_controller.go",
+        "sweeper_factory.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/jobservice/logger",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/jobservice/config:go_default_library",
+        "//src/jobservice/logger/backend:go_default_library",
+        "//src/jobservice/logger/getter:go_default_library",
+        "//src/jobservice/logger/sweeper:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "base_test.go",
+        "entry_test.go",
+        "factory_test.go",
+        "getter_factory_test.go",
+        "known_loggers_test.go",
+        "log_data_handler_test.go",
+        "sweeper_factory_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/jobservice/config:go_default_library",
+        "//src/jobservice/logger/backend:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

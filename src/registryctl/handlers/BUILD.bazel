@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "handler.go",
+        "router.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/registryctl/handlers",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/registryctl/api:go_default_library",
+        "//src/registryctl/auth:go_default_library",
+        "//src/vendor/github.com/gorilla/handlers:go_default_library",
+        "//src/vendor/github.com/gorilla/mux:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["handler_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/registryctl/auth:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

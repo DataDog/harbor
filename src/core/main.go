@@ -83,6 +83,7 @@ func gracefulShutdown(closing chan struct{}) {
 func main() {
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.BConfig.WebConfig.Session.SessionName = "sid"
+	beego.BConfig.WebConfig.ViewsPath = "src/core/views"
 	// TODO
 	redisURL := os.Getenv("_REDIS_URL")
 	if len(redisURL) > 0 {

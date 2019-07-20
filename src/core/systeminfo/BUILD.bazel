@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["systeminfo.go"],
+    importpath = "github.com/goharbor/harbor/src/core/systeminfo",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/core/systeminfo/imagestorage:go_default_library",
+        "//src/core/systeminfo/imagestorage/filesystem:go_default_library",
+    ],
+)

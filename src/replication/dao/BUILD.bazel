@@ -1,0 +1,42 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "base.go",
+        "execution.go",
+        "policy.go",
+        "registry.go",
+        "schedule_job.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/replication/dao",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/replication/dao/models:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/orm:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "dao_test.go",
+        "execution_test.go",
+        "policy_test.go",
+        "registry_test.go",
+        "schedule_job_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/replication/dao/models:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)
