@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["driver.go"],
+    importpath = "github.com/goharbor/harbor/src/common/quota/driver/project",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/config:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/quota/driver:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/vendor/github.com/graph-gophers/dataloader:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["driver_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/quota/driver:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

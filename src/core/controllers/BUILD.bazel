@@ -1,0 +1,46 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "base.go",
+        "error.go",
+        "oidc.go",
+        "proxy.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/controllers",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils:go_default_library",
+        "//src/common/utils/email:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/common/utils/oidc:go_default_library",
+        "//src/core/api:go_default_library",
+        "//src/core/auth:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/filter:go_default_library",
+        "//src/core/middlewares:go_default_library",
+        "//src/vendor/github.com/astaxie/beego:go_default_library",
+        "//src/vendor/github.com/beego/i18n:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["controllers_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils/test:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/filter:go_default_library",
+        "//src/core/middlewares:go_default_library",
+        "//src/vendor/github.com/astaxie/beego:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

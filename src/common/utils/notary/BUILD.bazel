@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["helper.go"],
+    importpath = "github.com/goharbor/harbor/src/common/utils/notary",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/common/utils/notary/model:go_default_library",
+        "//src/common/utils/registry:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/service/token:go_default_library",
+        "//src/vendor/github.com/docker/distribution/registry/auth/token:go_default_library",
+        "//src/vendor/github.com/opencontainers/go-digest:go_default_library",
+        "//src/vendor/github.com/theupdateframework/notary:go_default_library",
+        "//src/vendor/github.com/theupdateframework/notary/client:go_default_library",
+        "//src/vendor/github.com/theupdateframework/notary/trustpinning:go_default_library",
+        "//src/vendor/github.com/theupdateframework/notary/tuf/data:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["helper_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/common/utils/notary/model:go_default_library",
+        "//src/common/utils/notary/test:go_default_library",
+        "//src/common/utils/test:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

@@ -163,9 +163,14 @@ func gracefulShutdown(closing, done chan struct{}) {
 }
 
 func main() {
+	if err := utils.InitEnvironment(); err != nil {
+		log.Fatalf("failed to initialize environment: %v", err)
+	}
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.BConfig.WebConfig.Session.SessionName = config.SessionCookieName
 
+	beego.BConfig.WebConfig.ViewsPath = os.Getenv("WEB_TEMPLATES_PATH")
+	// TODO
 	redisURL := os.Getenv("_REDIS_URL")
 	if len(redisURL) > 0 {
 		gob.Register(models.User{})

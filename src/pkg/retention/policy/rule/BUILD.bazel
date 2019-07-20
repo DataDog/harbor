@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "evaluator.go",
+        "models.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/pkg/retention/policy/rule",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/pkg/retention/res:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/validation:go_default_library",
+    ],
+)

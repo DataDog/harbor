@@ -1,0 +1,69 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "main.go",
+        "router.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/common/job:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/quota:go_default_library",
+        "//src/common/utils:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/core/api:go_default_library",
+        "//src/core/api/quota:go_default_library",
+        "//src/core/api/quota/chart:go_default_library",
+        "//src/core/api/quota/registry:go_default_library",
+        "//src/core/auth/authproxy:go_default_library",
+        "//src/core/auth/db:go_default_library",
+        "//src/core/auth/ldap:go_default_library",
+        "//src/core/auth/uaa:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/controllers:go_default_library",
+        "//src/core/filter:go_default_library",
+        "//src/core/middlewares:go_default_library",
+        "//src/core/notifier/topic:go_default_library",
+        "//src/core/service/notifications/admin:go_default_library",
+        "//src/core/service/notifications/jobs:go_default_library",
+        "//src/core/service/notifications/registry:go_default_library",
+        "//src/core/service/notifications/scheduler:go_default_library",
+        "//src/core/service/token:go_default_library",
+        "//src/pkg/notification:go_default_library",
+        "//src/pkg/scheduler:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/replication:go_default_library",
+        "//src/vendor/github.com/astaxie/beego:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/session/redis:go_default_library",
+    ],
+)
+
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+
+filegroup(
+    name = "view_templates",
+    srcs = glob([
+        "views/**",
+    ]),
+)
+
+go_image(
+    name = "image",
+    embed = [":go_default_library"],
+    data = [
+        "//make/migrations:postgresql",
+        ":view_templates",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+go_binary(
+    name = "core",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

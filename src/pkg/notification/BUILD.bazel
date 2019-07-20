@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["notification.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/notification",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/pkg/notification/hook:go_default_library",
+        "//src/pkg/notification/job:go_default_library",
+        "//src/pkg/notification/job/manager:go_default_library",
+        "//src/pkg/notification/model:go_default_library",
+        "//src/pkg/notification/policy:go_default_library",
+        "//src/pkg/notification/policy/manager:go_default_library",
+    ],
+)

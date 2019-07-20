@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["controller.go"],
+    importpath = "github.com/goharbor/harbor/src/replication/policy/controller",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/job:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/replication/policy:go_default_library",
+        "//src/replication/policy/manager:go_default_library",
+        "//src/replication/policy/scheduler:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["controller_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/replication/model:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

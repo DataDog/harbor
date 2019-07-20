@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["utils.go"],
+    importpath = "github.com/goharbor/harbor/src/jobservice/tests",
+    visibility = ["//visibility:public"],
+    deps = ["//src/vendor/github.com/gomodule/redigo/redis:go_default_library"],
+)

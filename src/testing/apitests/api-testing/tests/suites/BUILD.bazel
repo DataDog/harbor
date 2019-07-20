@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["suite.go"],
+    importpath = "github.com/goharbor/harbor/src/testing/apitests/api-testing/tests/suites",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/testing/apitests/api-testing/envs:go_default_library",
+        "//src/testing/apitests/api-testing/lib:go_default_library",
+    ],
+)

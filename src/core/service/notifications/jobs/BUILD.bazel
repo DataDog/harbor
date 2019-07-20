@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["handler.go"],
+    importpath = "github.com/goharbor/harbor/src/core/service/notifications/jobs",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/job:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/core/api:go_default_library",
+        "//src/core/notifier/event:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/pkg/notification:go_default_library",
+        "//src/pkg/retention:go_default_library",
+        "//src/replication:go_default_library",
+        "//src/replication/operation/hook:go_default_library",
+        "//src/replication/policy/scheduler:go_default_library",
+    ],
+)

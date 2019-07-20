@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "concourse_ci.go",
+        "concourse_ci_ldap.go",
+        "environment.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/testing/apitests/api-testing/envs",
+    visibility = ["//visibility:public"],
+    deps = ["//src/testing/apitests/api-testing/client:go_default_library"],
+)

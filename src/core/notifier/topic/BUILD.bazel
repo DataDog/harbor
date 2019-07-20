@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["topics.go"],
+    importpath = "github.com/goharbor/harbor/src/core/notifier/topic",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/core/notifier:go_default_library",
+        "//src/core/notifier/handler/notification:go_default_library",
+        "//src/core/notifier/model:go_default_library",
+    ],
+)

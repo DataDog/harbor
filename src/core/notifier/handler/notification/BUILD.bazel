@@ -1,0 +1,50 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "chart_handler.go",
+        "http_handler.go",
+        "image_handler.go",
+        "processor.go",
+        "scan_image_handler.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/notifier/handler/notification",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/job/models:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/notifier/event:go_default_library",
+        "//src/core/notifier/model:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/pkg/notification:go_default_library",
+        "//src/pkg/notification/model:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "chart_handler_test.go",
+        "http_handler_test.go",
+        "image_handler_test.go",
+        "scan_image_handler_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/job/models:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/notifier/event:go_default_library",
+        "//src/core/notifier/model:go_default_library",
+        "//src/pkg/notification:go_default_library",
+        "//src/pkg/notification/model:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

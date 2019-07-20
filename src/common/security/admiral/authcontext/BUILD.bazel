@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["authcontext.go"],
+    importpath = "github.com/goharbor/harbor/src/common/security/admiral/authcontext",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/http:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils:go_default_library",
+        "//src/common/utils/log:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["authcontext_test.go"],
+    embed = [":go_default_library"],
+    deps = ["//src/vendor/github.com/stretchr/testify/assert:go_default_library"],
+)

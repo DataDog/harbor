@@ -1,0 +1,39 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "controller.go",
+        "interface.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/jobservice/core",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/jobservice/common/query:go_default_library",
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/jobservice/errs:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+        "//src/jobservice/mgt:go_default_library",
+        "//src/jobservice/worker:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+        "//src/vendor/github.com/robfig/cron:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["controller_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/jobservice/common/query:go_default_library",
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/jobservice/job/impl/sample:go_default_library",
+        "//src/jobservice/worker:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/mock:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

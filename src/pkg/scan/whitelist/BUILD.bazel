@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "manager.go",
+        "validator.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/pkg/scan/whitelist",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "manager_test.go",
+        "validator_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

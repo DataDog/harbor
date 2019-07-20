@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["registry.go"],
+    importpath = "github.com/goharbor/harbor/src/core/api/quota/registry",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/quota:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/common/utils/registry:go_default_library",
+        "//src/core/api:go_default_library",
+        "//src/core/api/quota:go_default_library",
+        "//src/core/promgr:go_default_library",
+        "//src/core/utils:go_default_library",
+        "//src/vendor/github.com/docker/distribution/manifest/schema1:go_default_library",
+        "//src/vendor/github.com/docker/distribution/manifest/schema2:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)

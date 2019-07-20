@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["schedule.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/scheduler/model",
+    visibility = ["//visibility:public"],
+    deps = ["//src/vendor/github.com/astaxie/beego/orm:go_default_library"],
+)

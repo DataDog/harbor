@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["hanlder.go"],
+    importpath = "github.com/goharbor/harbor/src/core/middlewares/readonly",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/middlewares/util:go_default_library",
+    ],
+)

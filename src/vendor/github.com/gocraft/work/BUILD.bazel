@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "client.go",
+        "dead_pool_reaper.go",
+        "enqueue.go",
+        "heartbeater.go",
+        "identifier.go",
+        "job.go",
+        "log.go",
+        "observer.go",
+        "periodic_enqueuer.go",
+        "priority_sampler.go",
+        "redis.go",
+        "requeuer.go",
+        "run.go",
+        "time.go",
+        "worker.go",
+        "worker_pool.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/gocraft/work",
+    importpath = "github.com/gocraft/work",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/gomodule/redigo/redis:go_default_library",
+        "//src/vendor/github.com/robfig/cron:go_default_library",
+    ],
+)

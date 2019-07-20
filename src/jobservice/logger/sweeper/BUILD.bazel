@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "db_sweeper.go",
+        "file_sweeper.go",
+        "interface.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/jobservice/logger/sweeper",
+    visibility = ["//visibility:public"],
+    deps = ["//src/common/dao:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "db_sweeper_test.go",
+        "file_sweeper_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/jobservice/logger/backend:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

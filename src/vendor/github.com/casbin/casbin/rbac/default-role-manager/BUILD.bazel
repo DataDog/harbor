@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["role_manager.go"],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/casbin/casbin/rbac/default-role-manager",
+    importpath = "github.com/casbin/casbin/rbac/default-role-manager",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/casbin/casbin/log:go_default_library",
+        "//src/vendor/github.com/casbin/casbin/rbac:go_default_library",
+    ],
+)

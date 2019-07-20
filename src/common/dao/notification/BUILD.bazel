@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "notification_job.go",
+        "notification_policy.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/common/dao/notification",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/orm:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "notification_job_test.go",
+        "notification_policy_test.go",
+        "notification_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

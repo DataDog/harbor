@@ -1,0 +1,46 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["bootstrap.go"],
+    importpath = "github.com/goharbor/harbor/src/jobservice/runtime",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/jobservice/api:go_default_library",
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/jobservice/config:go_default_library",
+        "//src/jobservice/core:go_default_library",
+        "//src/jobservice/env:go_default_library",
+        "//src/jobservice/hook:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/jobservice/job/impl/gc:go_default_library",
+        "//src/jobservice/job/impl/notification:go_default_library",
+        "//src/jobservice/job/impl/replication:go_default_library",
+        "//src/jobservice/job/impl/sample:go_default_library",
+        "//src/jobservice/job/impl/scan:go_default_library",
+        "//src/jobservice/lcm:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+        "//src/jobservice/mgt:go_default_library",
+        "//src/jobservice/migration:go_default_library",
+        "//src/jobservice/worker:go_default_library",
+        "//src/jobservice/worker/cworker:go_default_library",
+        "//src/pkg/retention:go_default_library",
+        "//src/pkg/scheduler:go_default_library",
+        "//src/vendor/github.com/gomodule/redigo/redis:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["bootstrap_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/jobservice/config:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+        "//src/jobservice/tests:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

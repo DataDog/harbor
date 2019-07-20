@@ -1,0 +1,39 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "builder.go",
+        "handler.go",
+        "util.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/middlewares/chart",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/chartserver:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/common/quota:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/core/middlewares/interceptor:go_default_library",
+        "//src/core/middlewares/interceptor/quota:go_default_library",
+        "//src/core/middlewares/util:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/chartutil:go_default_library",
+        "//src/vendor/k8s.io/helm/pkg/proto/hapi/chart:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["handler_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/chartserver:go_default_library",
+        "//src/common/dao:go_default_library",
+        "//src/core/middlewares/util:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/testing:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

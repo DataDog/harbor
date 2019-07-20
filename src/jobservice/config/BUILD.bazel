@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["config.go"],
+    importpath = "github.com/goharbor/harbor/src/jobservice/config",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/jobservice/common/utils:go_default_library",
+        "//src/vendor/gopkg.in/yaml.v2:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["config_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

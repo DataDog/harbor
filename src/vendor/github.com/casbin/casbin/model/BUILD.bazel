@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "assertion.go",
+        "function.go",
+        "model.go",
+        "policy.go",
+    ],
+    importmap = "github.com/goharbor/harbor/src/vendor/github.com/casbin/casbin/model",
+    importpath = "github.com/casbin/casbin/model",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/vendor/github.com/casbin/casbin/config:go_default_library",
+        "//src/vendor/github.com/casbin/casbin/log:go_default_library",
+        "//src/vendor/github.com/casbin/casbin/rbac:go_default_library",
+        "//src/vendor/github.com/casbin/casbin/util:go_default_library",
+    ],
+)

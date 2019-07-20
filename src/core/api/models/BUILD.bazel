@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "admin_job.go",
+        "execution.go",
+        "registry.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/api/models",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/job:go_default_library",
+        "//src/common/job/models:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/common/utils:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/vendor/github.com/astaxie/beego/validation:go_default_library",
+        "//src/vendor/github.com/robfig/cron:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["admin_job_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common:go_default_library",
+        "//src/common/job:go_default_library",
+        "//src/common/utils/test:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)
