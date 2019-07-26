@@ -124,8 +124,7 @@ func (oc *OIDCController) Callback() {
 
 	if u == nil {
 		oc.SetSession(userInfoKey, string(ouDataStr))
-		oc.Controller.Redirect(fmt.Sprintf("/oidc-onboard?username=%s", strings.Replace(info.Username, " ", "_", -1)),
-			http.StatusFound)
+		oc.onboardAutoUser()
 	} else {
 		gids, err := group.PopulateGroup(models.UserGroupsFromName(info.Groups, common.OIDCGroupType))
 		if err != nil {
