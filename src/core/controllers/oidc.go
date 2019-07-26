@@ -17,6 +17,9 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
+	"strings"
+
 	"github.com/goharbor/harbor/src/common"
 	"github.com/goharbor/harbor/src/common/dao"
 	"github.com/goharbor/harbor/src/common/models"
@@ -26,8 +29,6 @@ import (
 	"github.com/goharbor/harbor/src/core/api"
 	"github.com/goharbor/harbor/src/core/config"
 	"github.com/pkg/errors"
-	"net/http"
-	"strings"
 )
 
 const tokenKey = "oidc_token"
@@ -124,8 +125,7 @@ func (oc *OIDCController) Callback() {
 
 	if u == nil {
 		oc.SetSession(userInfoKey, string(ouDataStr))
-		oc.Controller.Redirect(fmt.Sprintf("/oidc-onboard?username=%s", strings.Replace(d.Username, " ", "_", -1)),
-			http.StatusFound)
+		oc.onboardAutoUser()
 	} else {
 		oidcUser, err := dao.GetOIDCUserByUserID(u.UserID)
 		if err != nil {
