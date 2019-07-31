@@ -4,6 +4,7 @@ go_library(
     name = "go_default_library",
     srcs = [
         "encrypt.go",
+        "env.go",
         "link.go",
         "timemarker.go",
         "utils.go",

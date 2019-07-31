@@ -81,6 +81,9 @@ func gracefulShutdown(closing chan struct{}) {
 }
 
 func main() {
+	if err := utils.InitEnvironment(); err != nil {
+		log.Fatalf("failed to initialize environment: %v", err)
+	}
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.BConfig.WebConfig.Session.SessionName = "sid"
 	beego.BConfig.WebConfig.ViewsPath = "src/core/views"

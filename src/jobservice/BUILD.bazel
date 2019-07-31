@@ -8,6 +8,8 @@ go_library(
     deps = [
         "//src/common:go_default_library",
         "//src/common/config:go_default_library",
+        "//src/common/utils:go_default_library",
+        "//src/common/utils/log:go_default_library",
         "//src/jobservice/common/utils:go_default_library",
         "//src/jobservice/config:go_default_library",
         "//src/jobservice/job:go_default_library",

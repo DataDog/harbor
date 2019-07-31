@@ -22,6 +22,8 @@ import (
 
 	"github.com/goharbor/harbor/src/common"
 	comcfg "github.com/goharbor/harbor/src/common/config"
+	commonUtils "github.com/goharbor/harbor/src/common/utils"
+	"github.com/goharbor/harbor/src/common/utils/log"
 	"github.com/goharbor/harbor/src/jobservice/common/utils"
 	"github.com/goharbor/harbor/src/jobservice/config"
 	"github.com/goharbor/harbor/src/jobservice/job"
@@ -31,6 +33,9 @@ import (
 )
 
 func main() {
+	if err := commonUtils.InitEnvironment(); err != nil {
+		log.Fatalf("failed to initialize environment: %v", err)
+	}
 	// Get parameters
 	configPath := flag.String("c", "", "Specify the yaml config file path")
 	flag.Parse()

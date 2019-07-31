@@ -19,6 +19,7 @@ import (
 	"flag"
 	"net/http"
 
+	"github.com/goharbor/harbor/src/common/utils"
 	"github.com/goharbor/harbor/src/common/utils/log"
 	"github.com/goharbor/harbor/src/registryctl/config"
 	"github.com/goharbor/harbor/src/registryctl/handlers"
@@ -69,6 +70,9 @@ func (s *RegistryCtl) Start() {
 }
 
 func main() {
+	if err := utils.InitEnvironment(); err != nil {
+		log.Fatalf("failed to initialize environment: %v", err)
+	}
 
 	configPath := flag.String("c", "", "Specify the yaml config file path")
 	flag.Parse()
