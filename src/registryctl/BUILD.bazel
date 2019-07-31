@@ -6,6 +6,7 @@ go_library(
     importpath = "github.com/goharbor/harbor/src/registryctl",
     visibility = ["//visibility:private"],
     deps = [
+        "//src/common/utils:go_default_library",
         "//src/common/utils/log:go_default_library",
         "//src/registryctl/config:go_default_library",
         "//src/registryctl/handlers:go_default_library",
