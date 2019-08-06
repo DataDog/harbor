@@ -37,27 +37,54 @@ go_library(
     ],
 )
 
-load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+go_binary(
+    name = "core",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+    data = [
+        # ":migrations",
+        ":view_templates",
+    ],
+)
 
-filegroup(
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+pkg_tar(
+    name = "migrations",
+    package_dir = "/app/migrations/postgresql",
+    mode = "0444",
+    srcs = ["//make/migrations:postgresql"],
+)
+
+pkg_tar(
     name = "view_templates",
+    package_dir = "/app/templates",
+    mode = "0444",
     srcs = glob([
         "views/**",
     ]),
 )
 
-go_image(
-    name = "image",
-    embed = [":go_default_library"],
-    data = [
-        "//make/migrations:postgresql",
+load("@io_bazel_rules_docker//container:container.bzl", "container_image", "container_layer")
+
+container_image(
+    name = "migrations_image",
+    base = "@go_image_base//image",
+    tars = [
+        ":migrations",
         ":view_templates",
     ],
-    visibility = ["//visibility:public"],
+    env = {
+        "POSTGRES_MIGRATION_SCRIPTS_PATH": "/app/migrations/postgresql/",
+        "WEB_TEMPLATES_PATH": "/app/templates/",
+    },
 )
 
-go_binary(
-    name = "core",
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+
+go_image(
+    name = "image",
+    base = ":migrations_image",
     embed = [":go_default_library"],
     visibility = ["//visibility:public"],
 )

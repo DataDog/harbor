@@ -28,7 +28,7 @@ import (
 	_ "github.com/lib/pq" // register pgsql driver
 )
 
-const defaultMigrationPath = "make/migrations/postgresql/"
+const defaultMigrationPath = "migrations/postgresql/"
 
 type pgsql struct {
 	host     string

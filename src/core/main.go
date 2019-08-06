@@ -86,7 +86,7 @@ func main() {
 	}
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.BConfig.WebConfig.Session.SessionName = "sid"
-	beego.BConfig.WebConfig.ViewsPath = "src/core/views"
+	beego.BConfig.WebConfig.ViewsPath = os.Getenv("WEB_TEMPLATES_PATH")
 	// TODO
 	redisURL := os.Getenv("_REDIS_URL")
 	if len(redisURL) > 0 {
