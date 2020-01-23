@@ -26,6 +26,7 @@ go_test(
     deps = [
         "//src/common:go_default_library",
         "//src/common/dao:go_default_library",
+        "//src/common/dao/group:go_default_library",
         "//src/common/dao/project:go_default_library",
         "//src/common/models:go_default_library",
         "//src/common/utils/log:go_default_library",

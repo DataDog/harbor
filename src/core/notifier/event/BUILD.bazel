@@ -11,6 +11,7 @@ go_library(
         "//src/core/notifier:go_default_library",
         "//src/core/notifier/model:go_default_library",
         "//src/pkg/notification/model:go_default_library",
+        "//src/pkg/scan/rest/v1:go_default_library",
         "//src/vendor/github.com/pkg/errors:go_default_library",
     ],
 )

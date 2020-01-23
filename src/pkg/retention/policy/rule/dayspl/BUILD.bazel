@@ -8,9 +8,9 @@ go_library(
     deps = [
         "//src/common/utils:go_default_library",
         "//src/common/utils/log:go_default_library",
+        "//src/pkg/art:go_default_library",
         "//src/pkg/retention/policy/action:go_default_library",
         "//src/pkg/retention/policy/rule:go_default_library",
-        "//src/pkg/retention/res:go_default_library",
     ],
 )
 
@@ -19,8 +19,8 @@ go_test(
     srcs = ["evaluator_test.go"],
     embed = [":go_default_library"],
     deps = [
+        "//src/pkg/art:go_default_library",
         "//src/pkg/retention/policy/rule:go_default_library",
-        "//src/pkg/retention/res:go_default_library",
         "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
         "//src/vendor/github.com/stretchr/testify/require:go_default_library",
         "//src/vendor/github.com/stretchr/testify/suite:go_default_library",

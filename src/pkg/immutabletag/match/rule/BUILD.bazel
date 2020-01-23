@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["match.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/immutabletag/match/rule",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/pkg/art:go_default_library",
+        "//src/pkg/art/selectors/index:go_default_library",
+        "//src/pkg/immutabletag:go_default_library",
+        "//src/pkg/immutabletag/match:go_default_library",
+        "//src/pkg/immutabletag/model:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["match_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/pkg/art:go_default_library",
+        "//src/pkg/immutabletag:go_default_library",
+        "//src/pkg/immutabletag/model:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

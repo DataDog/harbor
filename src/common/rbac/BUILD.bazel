@@ -5,6 +5,7 @@ go_library(
     srcs = [
         "casbin.go",
         "const.go",
+        "evaluator.go",
         "namespace.go",
         "parser.go",
         "rbac.go",
@@ -12,10 +13,10 @@ go_library(
     importpath = "github.com/goharbor/harbor/src/common/rbac",
     visibility = ["//visibility:public"],
     deps = [
+        "//src/common/utils/log:go_default_library",
         "//src/vendor/github.com/casbin/casbin:go_default_library",
         "//src/vendor/github.com/casbin/casbin/model:go_default_library",
         "//src/vendor/github.com/casbin/casbin/persist:go_default_library",
-        "//src/vendor/github.com/casbin/casbin/util:go_default_library",
     ],
 )
 
@@ -23,10 +24,14 @@ go_test(
     name = "go_default_test",
     srcs = [
         "casbin_test.go",
+        "evaluator_test.go",
         "namespace_test.go",
         "parser_test.go",
         "rbac_test.go",
     ],
     embed = [":go_default_library"],
-    deps = ["//src/vendor/github.com/stretchr/testify/suite:go_default_library"],
+    deps = [
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
 )

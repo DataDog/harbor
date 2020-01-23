@@ -8,5 +8,8 @@ go_library(
     ],
     importpath = "github.com/goharbor/harbor/src/core/notifier/model",
     visibility = ["//visibility:public"],
-    deps = ["//src/common/models:go_default_library"],
+    deps = [
+        "//src/common/models:go_default_library",
+        "//src/pkg/scan/rest/v1:go_default_library",
+    ],
 )

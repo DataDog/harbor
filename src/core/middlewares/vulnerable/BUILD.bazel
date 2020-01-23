@@ -6,9 +6,13 @@ go_library(
     importpath = "github.com/goharbor/harbor/src/core/middlewares/vulnerable",
     visibility = ["//visibility:public"],
     deps = [
+        "//src/common/models:go_default_library",
         "//src/common/utils/log:go_default_library",
-        "//src/core/config:go_default_library",
         "//src/core/middlewares/util:go_default_library",
-        "//src/pkg/scan:go_default_library",
+        "//src/pkg/scan/api/scan:go_default_library",
+        "//src/pkg/scan/report:go_default_library",
+        "//src/pkg/scan/rest/v1:go_default_library",
+        "//src/pkg/scan/vuln:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
     ],
 )

@@ -6,8 +6,11 @@ go_library(
     importpath = "github.com/goharbor/harbor/src/pkg/retention/policy/action",
     visibility = ["//visibility:public"],
     deps = [
+        "//src/common/utils:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/pkg/art:go_default_library",
+        "//src/pkg/immutabletag/match/rule:go_default_library",
         "//src/pkg/retention/dep:go_default_library",
-        "//src/pkg/retention/res:go_default_library",
     ],
 )
 
@@ -16,8 +19,11 @@ go_test(
     srcs = ["performer_test.go"],
     embed = [":go_default_library"],
     deps = [
+        "//src/common/dao:go_default_library",
+        "//src/pkg/art:go_default_library",
+        "//src/pkg/immutabletag:go_default_library",
+        "//src/pkg/immutabletag/model:go_default_library",
         "//src/pkg/retention/dep:go_default_library",
-        "//src/pkg/retention/res:go_default_library",
         "//src/vendor/github.com/pkg/errors:go_default_library",
         "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
         "//src/vendor/github.com/stretchr/testify/require:go_default_library",

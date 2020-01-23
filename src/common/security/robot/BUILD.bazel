@@ -12,7 +12,9 @@ go_library(
         "//src/common/models:go_default_library",
         "//src/common/rbac:go_default_library",
         "//src/common/rbac/project:go_default_library",
+        "//src/common/utils/log:go_default_library",
         "//src/core/promgr:go_default_library",
+        "//src/pkg/robot/model:go_default_library",
     ],
 )
 
@@ -30,6 +32,7 @@ go_test(
         "//src/common/utils/log:go_default_library",
         "//src/core/promgr:go_default_library",
         "//src/core/promgr/pmsdriver/local:go_default_library",
+        "//src/pkg/robot/model:go_default_library",
         "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
         "//src/vendor/github.com/stretchr/testify/require:go_default_library",
     ],

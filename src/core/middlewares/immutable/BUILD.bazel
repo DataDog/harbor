@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "builder.go",
+        "handler.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/core/middlewares/immutable",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/core/middlewares/interceptor:go_default_library",
+        "//src/core/middlewares/interceptor/immutable:go_default_library",
+        "//src/core/middlewares/util:go_default_library",
+        "//src/core/middlewares/util/error:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["handler_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/dao:go_default_library",
+        "//src/common/models:go_default_library",
+        "//src/core/middlewares/util:go_default_library",
+        "//src/pkg/immutabletag:go_default_library",
+        "//src/pkg/immutabletag/model:go_default_library",
+        "//src/vendor/github.com/docker/distribution:go_default_library",
+        "//src/vendor/github.com/opencontainers/go-digest:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
+    ],
+)

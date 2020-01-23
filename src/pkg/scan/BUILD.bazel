@@ -2,25 +2,48 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
 go_library(
     name = "go_default_library",
-    srcs = ["vuln.go"],
+    srcs = [
+        "init.go",
+        "job.go",
+    ],
     importpath = "github.com/goharbor/harbor/src/pkg/scan",
     visibility = ["//visibility:public"],
     deps = [
-        "//src/common/dao:go_default_library",
-        "//src/common/models:go_default_library",
-        "//src/common/utils/clair:go_default_library",
         "//src/common/utils/log:go_default_library",
-        "//src/core/config:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+        "//src/pkg/q:go_default_library",
+        "//src/pkg/scan/dao/scanner:go_default_library",
+        "//src/pkg/scan/report:go_default_library",
+        "//src/pkg/scan/rest/v1:go_default_library",
+        "//src/pkg/scan/scanner:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/vendor/github.com/google/uuid:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
     ],
 )
 
 go_test(
     name = "go_default_test",
-    srcs = ["vuln_test.go"],
+    srcs = [
+        "init_test.go",
+        "job_test.go",
+    ],
     embed = [":go_default_library"],
     deps = [
-        "//src/common/dao:go_default_library",
-        "//src/common/models:go_default_library",
+        "//src/jobservice/job:go_default_library",
+        "//src/jobservice/logger:go_default_library",
+        "//src/pkg/q:go_default_library",
+        "//src/pkg/scan/dao/scanner:go_default_library",
+        "//src/pkg/scan/rest/v1:go_default_library",
+        "//src/pkg/scan/scanner:go_default_library",
+        "//src/pkg/scan/scanner/mocks:go_default_library",
+        "//src/pkg/scan/vuln:go_default_library",
+        "//src/pkg/types:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
         "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/mock:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/require:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/suite:go_default_library",
     ],
 )

@@ -9,7 +9,7 @@ go_library(
     importpath = "github.com/goharbor/harbor/src/pkg/retention/policy/rule",
     visibility = ["//visibility:public"],
     deps = [
-        "//src/pkg/retention/res:go_default_library",
+        "//src/pkg/art:go_default_library",
         "//src/vendor/github.com/astaxie/beego/validation:go_default_library",
     ],
 )

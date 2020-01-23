@@ -10,6 +10,7 @@ go_library(
         "//src/common/rbac:go_default_library",
         "//src/common/rbac/project:go_default_library",
         "//src/common/security/admiral/authcontext:go_default_library",
+        "//src/common/utils/log:go_default_library",
         "//src/core/promgr:go_default_library",
     ],
 )

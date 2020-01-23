@@ -25,5 +25,6 @@ go_test(
         "//src/common/dao/project:go_default_library",
         "//src/common/models:go_default_library",
         "//src/common/utils/log:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
     ],
 )

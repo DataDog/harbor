@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "api_key_auth.go",
+        "auth.go",
+        "basic_auth.go",
+        "bearer_auth.go",
+        "no_auth.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/pkg/scan/rest/auth",
+    visibility = ["//visibility:public"],
+    deps = ["//src/vendor/github.com/pkg/errors:go_default_library"],
+)

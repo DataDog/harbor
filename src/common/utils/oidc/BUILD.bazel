@@ -10,7 +10,9 @@ go_library(
     importpath = "github.com/goharbor/harbor/src/common/utils/oidc",
     visibility = ["//visibility:public"],
     deps = [
+        "//src/common:go_default_library",
         "//src/common/dao:go_default_library",
+        "//src/common/dao/group:go_default_library",
         "//src/common/models:go_default_library",
         "//src/common/utils:go_default_library",
         "//src/common/utils/log:go_default_library",

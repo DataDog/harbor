@@ -12,9 +12,7 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/common/api:go_default_library",
-        "//src/common/dao:go_default_library",
         "//src/common/job:go_default_library",
-        "//src/common/job/models:go_default_library",
         "//src/common/models:go_default_library",
         "//src/common/utils/log:go_default_library",
         "//src/common/utils/registry:go_default_library",
@@ -29,14 +27,11 @@ go_library(
 go_test(
     name = "go_default_test",
     srcs = [
-        "job_test.go",
         "response_handlers_test.go",
         "utils_test.go",
     ],
     embed = [":go_default_library"],
     deps = [
-        "//src/common/job:go_default_library",
-        "//src/common/job/models:go_default_library",
         "//src/core/config:go_default_library",
         "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
     ],

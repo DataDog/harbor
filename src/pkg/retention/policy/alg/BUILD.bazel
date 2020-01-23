@@ -6,8 +6,8 @@ go_library(
     importpath = "github.com/goharbor/harbor/src/pkg/retention/policy/alg",
     visibility = ["//visibility:public"],
     deps = [
+        "//src/pkg/art:go_default_library",
         "//src/pkg/retention/policy/action:go_default_library",
         "//src/pkg/retention/policy/rule:go_default_library",
-        "//src/pkg/retention/res:go_default_library",
     ],
 )

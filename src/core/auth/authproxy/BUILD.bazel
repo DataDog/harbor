@@ -13,8 +13,8 @@ go_library(
         "//src/common/utils/log:go_default_library",
         "//src/core/auth:go_default_library",
         "//src/core/config:go_default_library",
+        "//src/jobservice/logger:go_default_library",
         "//src/pkg/authproxy:go_default_library",
-        "//src/vendor/k8s.io/api/authentication/v1beta1:go_default_library",
     ],
 )
 

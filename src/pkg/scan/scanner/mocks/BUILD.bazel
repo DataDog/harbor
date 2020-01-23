@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["manager.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/scan/scanner/mocks",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/pkg/q:go_default_library",
+        "//src/pkg/scan/dao/scanner:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/mock:go_default_library",
+    ],
+)

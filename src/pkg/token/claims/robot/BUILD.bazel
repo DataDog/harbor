@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["robot.go"],
+    importpath = "github.com/goharbor/harbor/src/pkg/token/claims/robot",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/rbac:go_default_library",
+        "//src/vendor/github.com/dgrijalva/jwt-go:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["robot_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/rbac:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

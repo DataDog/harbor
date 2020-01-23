@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "init.go",
+        "notification.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/pkg/scan/event",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/core/notifier:go_default_library",
+        "//src/core/notifier/model:go_default_library",
+        "//src/pkg/art:go_default_library",
+        "//src/pkg/q:go_default_library",
+        "//src/pkg/scan/api/scan:go_default_library",
+        "//src/vendor/github.com/pkg/errors:go_default_library",
+    ],
+)

@@ -3,6 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "go_default_library",
     srcs = [
+        "apikey.go",
         "challenge.go",
         "credential.go",
         "path.go",
@@ -27,12 +28,14 @@ go_library(
 go_test(
     name = "go_default_test",
     srcs = [
+        "apikey_test.go",
         "credential_test.go",
         "path_test.go",
         "tokenauthorizer_test.go",
     ],
     embed = [":go_default_library"],
     deps = [
+        "//src/common/http/modifier:go_default_library",
         "//src/common/models:go_default_library",
         "//src/common/utils/test:go_default_library",
         "//src/vendor/github.com/docker/distribution/registry/auth/token:go_default_library",

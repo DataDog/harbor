@@ -5,4 +5,8 @@ go_library(
     srcs = ["server.go"],
     importpath = "github.com/goharbor/harbor/src/core/auth/authproxy/test",
     visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils:go_default_library",
+        "//src/vendor/k8s.io/api/authentication/v1beta1:go_default_library",
+    ],
 )

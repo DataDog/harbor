@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "adapter.go",
+        "types.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/replication/adapter/jfrog",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/http:go_default_library",
+        "//src/common/http/modifier:go_default_library",
+        "//src/common/utils/log:go_default_library",
+        "//src/common/utils/registry/auth:go_default_library",
+        "//src/replication/adapter:go_default_library",
+        "//src/replication/adapter/native:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/replication/util:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["adapter_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/utils/test:go_default_library",
+        "//src/replication/adapter:go_default_library",
+        "//src/replication/model:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "options.go",
+        "token.go",
+    ],
+    importpath = "github.com/goharbor/harbor/src/pkg/token",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/common/utils/log:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/vendor/github.com/dgrijalva/jwt-go:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "option_test.go",
+        "token_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//src/common/rbac:go_default_library",
+        "//src/core/config:go_default_library",
+        "//src/pkg/token/claims/robot:go_default_library",
+        "//src/vendor/github.com/dgrijalva/jwt-go:go_default_library",
+        "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

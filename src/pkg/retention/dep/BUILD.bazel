@@ -8,8 +8,8 @@ go_library(
     deps = [
         "//src/common/http/modifier/auth:go_default_library",
         "//src/jobservice/config:go_default_library",
+        "//src/pkg/art:go_default_library",
         "//src/pkg/clients/core:go_default_library",
-        "//src/pkg/retention/res:go_default_library",
     ],
 )
 
@@ -22,7 +22,7 @@ go_test(
         "//src/common/job/models:go_default_library",
         "//src/common/models:go_default_library",
         "//src/jobservice/job:go_default_library",
-        "//src/pkg/retention/res:go_default_library",
+        "//src/pkg/art:go_default_library",
         "//src/testing/clients:go_default_library",
         "//src/vendor/github.com/stretchr/testify/assert:go_default_library",
         "//src/vendor/github.com/stretchr/testify/require:go_default_library",
