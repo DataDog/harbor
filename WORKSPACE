@@ -1226,3 +1226,9 @@ go_repository(
     importpath = "go.uber.org/zap",
     tag = "v1.10.0",
 )
+
+go_repository(
+    name = "com_github_google_uuid",
+    importpath = "github.com/google/uuid",
+    tag = "v1.1.1",
+)
