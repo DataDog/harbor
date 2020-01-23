@@ -9,6 +9,7 @@ import (
 	"github.com/goharbor/harbor/src/common/models"
 	"github.com/goharbor/harbor/src/common/utils"
 	"github.com/goharbor/harbor/src/common/utils/log"
+	"github.com/goharbor/harbor/src/common/utils/oidc"
 	"github.com/pkg/errors"
 )
 
@@ -30,7 +31,7 @@ func (oc *OIDCController) onboardAutoUser() {
 		oc.SendInternalServerError(err)
 		return
 	}
-	d := &oidcUserData{}
+	d := &oidc.UserInfo{}
 	err = json.Unmarshal([]byte(userInfoStr), &d)
 	if err != nil {
 		oc.SendInternalServerError(err)
@@ -71,7 +72,7 @@ func (oc *OIDCController) onboardAutoUser() {
 	}
 
 	user.OIDCUserMeta = nil
-	oc.SetSession(userKey, user)
+	oc.SetSession(userInfoKey, user)
 	oc.DelSession(userInfoKey)
 	oc.Controller.Redirect("/", http.StatusFound)
 }
